@@ -1,0 +1,76 @@
+<<'setup', include=FALSE>>=
+library(knitr)
+### Set knitr compilation options
+# knitr::opts_chunk$set(results='hide', echo=FALSE, comment=NA, warning=FALSE, message=FALSE, concordance=TRUE, cache=TRUE) # comment out to print output
+
+# Set smaller font size for chunks (for code display):
+knitr::opts_chunk$set(size='footnotesize')
+
+# show R> prompt before R commands
+options(prompt='R> ')
+knitr::opts_chunk$set(prompt=TRUE) 
+
+# set theme for code output
+thm = knit_theme$get("biogoo") # lightgray background
+knitr::knit_theme$set(thm)
+
+# Set figure size and resolution
+opts_chunk$set(dev=c('pdf','png'), fig.path='figures/color/', fig.align='center', fig.height=c(5, 5), fig.width=c(8, 8), dpi=300, pdf.options(encoding="ISOLatin9.enc")) 
+
+# evaluate fig.cap after a chunk is evaluated
+opts_knit$set(eval.after='fig.cap')
+
+# TeX styles in tex document, CSS styles in HTML document
+opts_knit$set(self.contained=TRUE)
+
+# modify the default hook to remove spaces before writing the output
+hook_output = knit_hooks$get('output')
+knit_hooks$set(output=function(x, options) {
+  s=options$rm.spaces
+  if (!is.null(s)) x=gsub(sprintf('(^|\n)%s', s), '\\1', x)
+  hook_output(x, options)
+})
+
+### Load R Packages to compile knitr chunks:
+# setwd("~/tex/Slides/Lecture-Methods/Research-R/")# temp for convenience
+library("ggplot2")      # wide range of plotting capabilities
+library("scales")       # labels with %, $ and other units
+library("RColorBrewer") # convenient color palettes
+
+### Set ggplot theme for all plots
+# change in font sizes may alter legend box positions and/or label overlaps
+# White background, legend inside rectangular box, font size 13
+# based on theme_bw() whose default values are:
+# base_size = 12
+# legend.key = theme_rect(colour = "grey80")
+# legend.key.size = unit(1.2, "lines")
+# legend.text = theme_text(size = base_size * 0.8)
+# legend.title = theme_text(size = base_size * 0.8, face = "bold", hjust = 0)
+# Remark: ggplot2 has a bug in legend.title vertical spacing when legend.title is NULL, e.g. , legend.title = element_text(vjust = 1)
+# to do: add e.g. legend.justification = c(0,0)
+theme_slides <- function(x) {
+  theme_bw(x) + 
+      theme(legend.key = element_blank(), legend.background = element_rect(colour = 'black', fill = 'white'))
+}
+theme_set(theme_slides(12))
+
+### Set Line, Color & Shape Schemes
+# 1. linetype scheme (not extensively tested)
+linePalette <- c("solid", "dotted", "dashed", "dotdash", "longdash", "twodash", "13", "31", "1221")# "33" means 3 units on followed by 3 units off
+# 2. shape scheme (is there a package for this?)
+shapePalette <- c(17, 21, 15, 25, 19, 23, 18, 2, 16, 0, 8)
+shapePalettePaired <- c(17, 2, 16, 21, 15, 0, 18, 23, 24)
+  ## sp <- shapePalettePaired
+  ## ggplot(data.frame(x = 1:length(sp) , y = 1:length(sp), z = sp), aes(x = x, y = y)) + geom_point(aes(shape = z), size = 10) + scale_shape_identity()
+# 3. color scheme (with RBrewerColor package)
+colorPalette <- colorRampPalette(brewer.pal(9, "Set1"))(9)# extract palette colors
+# fill scheme (with RBrewerColor package)
+fillPalette <- "Blues"  # shades of blue for filling areas of stack plots
+shadePalette <- c("blue", "red", "green")  # light colors for shading areas
+### Set a Black & White Scheme
+# to set bw scheme, uncomment 4 lines below
+     #colorPalette <- rep("#000000", 9)                 # black and white figures
+     #fillPalette <- "Greys"                            # black and white figures
+     #shadePalette <- c("grey50", "grey90", "grey95")   # grey color for shading
+     #opts_chunk$set(fig.path='figures/bw/') # save in sub-directory
+@

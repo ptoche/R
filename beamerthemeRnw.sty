@@ -1,0 +1,189 @@
+%%% This file to be named beamerThemeRnw.sty and stored on the LaTeX+R path
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Set beamer theme %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetheme{default}
+\useoutertheme{default}
+%\usetheme{Madrid}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Set navigation symbols %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{navigation symbols}{}
+\beamerdefaultoverlayspecification{<+->}% {} to suppress overlays
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Set fonts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}% font encoding, load before inputenc
+\usepackage[utf8]{inputenc}% character inputing, load after fontenc
+\usepackage{lmodern}
+\renewcommand\sfdefault{phv}
+\renewcommand\familydefault{\sfdefault}
+\usepackage{alltt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Load Latex Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}% \includegraphics
+\usepackage{booktabs}% fancy tables
+\usepackage[flushleft]{threeparttable}% fancy tables
+\usepackage{verbatim}% pass text as unprocessed strings / comment out
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%% Set Various LaTeX Options %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{secnumdepth}{3}%
+\setcounter{tocdepth}{3}%
+\setlength{\abovecaptionskip}{0pt}%
+\setlength{\belowcaptionskip}{0pt}%
+%\renewcommand{\insertpagenumber}{}% suppress page numbers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Set colors and sizes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xcolor}
+%\setbeamercolor{structure}{fg = gray}
+\setbeamerfont{title}{size = \Huge}
+\setbeamercolor{title}{fg = MidnightBlue}
+\setbeamercolor{frametitle}{fg = MidnightBlue}
+\setbeamerfont{frametitle}{series = \bfseries}
+\setbeamerfont{frametitle}{size = \small}
+\setbeamercolor{normal text}{bg = white, fg = black}
+%\setbeamertemplate{background canvas}[vertical shading][bottom = white, middle = black!50, top = black]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Set margins style %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\linewidth}{\vspace*{-8pt}
+  {\tiny \url{https://github.com/ptoche/R}}
+  \hfill\insertshortauthor\hfill\insertpagenumber}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Set caption style %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\setbeamerfont{caption}{size = \footnotesize}
+\setbeamercolor{caption}{fg = MidnightBlue!60!Gray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Set itemize and enumerate styles %%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{itemize item}[square]
+\setbeamertemplate{itemize subitem}[triangle]
+\setbeamercolor{itemize item}{fg = MidnightBlue}
+\setbeamercolor{itemize subitem}{fg = RoyalBlue}
+\setbeamercolor{itemize subsubitem}{fg = black}
+\setbeamercolor{enumerate item}{fg = MidnightBlue}
+\setbeamercolor{enumerate subitem}{fg = RoyalBlue}
+\setbeamercolor{enumerate subsubitem}{fg = black}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Make hyperlinks jump more accurately %%%%%%%%%%%%%%%%
+\makeatletter%
+\newcommand\org@hypertarget{}%
+\let\org@hypertarget\hypertarget%
+\renewcommand\hypertarget[2]{%
+\Hy@raisedlink{\org@hypertarget{#1}{}}#2%
+}%
+\makeatother% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Set Boxed Equation Styles %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\tcbset{
+  highlight math style={
+    enhanced,
+    colframe=NavyBlue!70!black,
+    colback=NavyBlue!10,
+    boxrule=1pt,
+  }
+}
+\newtcbox{\mymath}[1][]{%
+    nobeforeafter, 
+    math upper, 
+    tcbox raise base,
+    enhanced, 
+    colframe=blue!30!black,
+    colback=blue!30, 
+    boxrule=2pt,
+    #1}
+\newenvironment{emphalign}
+  {\empheq[box=\tcbhighmath]{align}}
+  {\endempheq}
+\newenvironment{emphalign*}
+  {\empheq[box={\mymath[colback=RoyalBlue!30!white, drop lifted shadow, sharp corners]}]{align*}}
+  {\endempheq}
+\makeatletter
+\newtcolorbox{emphbox}[2][]{%
+    valign=center, 
+    halign=center, 
+    colframe=blue!30!black,
+    colback=RoyalBlue!30!white, 
+    drop lifted shadow, 
+    sharp corners,
+    title=#2,
+    #1}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%  Define code-formatting commands %%%%%%%%%%%%%%%%%%%%
+\usepackage{textcomp}% needed for double quotes
+\usepackage{listings}
+\lstset{upquote=true}% needed for double quotes
+%\lstdefinestyle{Bash}{% \lstinline[style=Bash]`bla`
+\lstset{language=R}
+\lstset{% options apply to all \begin{lstlisting}
+  basicstyle = \small\ttfamily,%fonts for main code
+  numbers = none, % position of line-numbers: none, left,etc.
+  numberstyle = \tiny,% fonts for line-numbers: \tiny,\small,etc.
+  numbersep = 3pt,% space between code and line-numbers
+  stepnumber = 1,% step between two line-numbers.
+  showspaces = false,% show spaces adding particular underscores
+  showstringspaces = false,% underline spaces within strings
+  frame = none, % adds a frame around the code: single,tb,none
+  tabsize = 2, % default tab size
+  captionpos = b% caption position: b for bottom, etc.
+  backgroundcolor = \color{gray!20},
+  xleftmargin = 0.1\parindent,
+  frame = shadowbox, 
+  rulesepcolor = \color{RoyalBlue!80!white},
+  framexleftmargin = 1pt,
+  columns = fullflexible,% 
+  breakatwhitespace=true,% for use with breaklines option
+  keywords = {R,ggplot2,..}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%  Define shortcut commands for Names %%%%%%%%%%%%%%%%%
+\usepackage{xspace}% \xspace command to close macros
+\xspaceaddexceptions{]\}}
+\newcommand{\R}[1]{\colorbox{lightgray}{\texttt{#1}}\xspace} % biogoo uses lightgray
+%% define a \Rcode shortcut
+\DeclareRobustCommand\Rsymbol{\texttt{R}\xspace}%
+\newcommand{\Rlogo}{\mbox{\includegraphics[height=1.8ex,keepaspectratio]{Rlogo.png}~}}
+%% define a \cmd command
+\newcommand*{\cmd}[1]{\texttt{#1}}%
+%% \bs shortcut to type a backslash
+\newcommand{\bs}{\ensuremath{\backslash}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%  Set space for verbatim/code environments %%%%%%%%%%%
+% make spacing tighter
+\let\oldknitrout\knitrout
+\renewenvironment{knitrout}{
+  \begin{oldknitrout}
+  \topsep=0pt
+}{
+  \end{oldknitrout}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

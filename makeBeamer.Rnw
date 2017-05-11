@@ -1,0 +1,70 @@
+%%%%%%%%%% Set options for packages loaded by the beamer class %%%%%%%%%%%%%%%%%
+%%% \PassOptionsToPackage loads options for packages loaded by beamer class
+\PassOptionsToPackage{obeyspaces}{url}% url package loaded by hyperref
+\PassOptionsToPackage{usenames,dvipsnames,svgnames}{xcolor}% named colors
+\PassOptionsToPackage{%
+    unicode = {false}%
+    , colorlinks = {true}%
+    , linkcolor = {MidnightBlue}%
+    , filecolor = {MidnightBlue}%
+    , citecolor = {MidnightBlue}%
+    , urlcolor = {MidnightBlue}%
+    , breaklinks = {false}%
+    , plainpages = {true}% page number anchors as plain arabic
+    , bookmarks = {true}%
+    , bookmarksnumbered = {true}%
+    , bookmarksopen = {true}%
+    , backref = {false}%
+    , pdfusetitle = {false}% false required for \includeonlyframeslist hack
+    , pdfpagemode = {UseNone}% UseThumbs, UseOutlines, FullScreen, UseNone
+    , pdfpagetransition = {Wipe /Di -45}%
+    , pdfpagelayout = {SinglePage}%
+    , pdfpagelabels = {false}% fix for beamer bug for some classes
+    , pdfstartpage = {1}%
+    , pdfstartview = {FitV}%
+    , pdffitwindow = {false}%
+    , pdfcenterwindow = {true}%
+    , pdfmenubar = {true}%
+    , pdfdisplaydoctitle = {true}%
+}{hyperref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%% Set Preamble Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[t]{beamer}
+%%% Select frames to be included in presentation
+% \includeonlyframes{} takes a comma-separated list *without spaces*
+%\input{slidesCurrent}% frames being debugged
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%% Set Document Information %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Introduction to R}
+\author[Patrick Toche]{Patrick Toche\inst{1}}
+\institute{$^1$%
+  %Christ Church \\
+  %Oxford OX1 1DP \bigskip\bigskip \\
+  \href{mailto:contact@patricktoche.com}{contact@patricktoche.com} \\
+  \url{https://github.com/ptoche/}
+}
+\date{April 2017}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%% Set Beamer Options %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetheme{Rnw}% \usetheme{X} calls file named beamerthemeX.sty
+%%% This file to be named EXACTLY beamerthemeRnw.sty and stored on the LaTeX+R path
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%% Start of Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%% Set Various KnitR Options %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<'nested-setup', child='beamerKnitR.tex'>>=
+@
+
+%%%%%%%%%%% Include slides %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<'nested-slides', child='R-Introduction.tex'>>=
+@
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

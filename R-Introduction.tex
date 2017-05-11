@@ -1,0 +1,379 @@
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[label=TitlePage]
+\maketitle% first slide with title/author information
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Introduction to \Rlogo}
+\begin{itemize}
+\item \Rlogo is an open-source programming language, it is free for any use, personal, academic, commercial. 
+\item The community of \Rlogo users is one of the largest and growing. Thousands of users are ready to help. 
+\item Check \url{http://stackoverflow.com/} for questions and answers. Before you post questions, be sure to check the forum's etiquette and how to write a good question: provide a minimal example (stripped of unnecessary detail) with reproducible data (either a sample of the original data or artificial data generated for the question), relevant bits of code you've tried, and the problems you've had, e.g. error messages. Stay focused. 
+\item \Rlogo has hundreds of packages that may be used to extend basic functionalities.
+\item \texttt{RStudio} is a great interface to \Rlogo.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Get Started}
+\begin{itemize}
+\item One of the first things you want to do is to set your current directory, so that you may be able to locate any data or plots you save to it.
+\begin{itemize}
+\item On Windows:
+\begin{lstlisting}
+setwd("c:/R/introduction/")
+\end{lstlisting}
+\item On MacOS:
+\begin{lstlisting}
+setwd("~/R/introduction/")
+\end{lstlisting}
+\end{itemize}
+\item Find out what the current working directory is:
+\begin{lstlisting}
+getwd()
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Play around:}
+<<'exhibit101', include=TRUE>>=
+  2 + 2
+  2 * 2
+  2^2
+  pi
+  Pi
+  e
+  exp(1)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Play around:}
+<<'exhibit102', include=TRUE>>=
+  x = 1
+  str(x)
+  x <- 1
+  str(x)
+  x <- "1"
+  str(x)
+  x <- 1L
+  str(x)
+  x <- c(1)
+  str(x)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Play around:}
+<<'exhibit103', include=TRUE>>=
+  1 = 1
+  1 == 1
+  is(1 == 1)
+  TRUE
+  TRUE == 1
+  is(TRUE == 1)
+  True == 1
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{\Rlogo Objects}
+\Rlogo objects include:
+\begin{itemize}
+\item Special values: \R{NA}, \R{NaN}, \R{Inf}, \R{-Inf}, \R{NULL}.
+\item Number types: integer (\R{int}), double-precision values (\R{num}), binary values that stand for True or False (\R{logi}), complex numbers (\R{cplx}). Double-precision values vary from machine to machine, but typically range from about $2e-308$ to $2e+308$.
+\item ``container'' objects (data structures):  list, list of list, vector, matrix, array, table, data.frame, data.table (an efficient data.frame available from package \texttt{data.table})
+\item ``transforming'' objects: function
+\item ``graphical'' objects: plot, ggplot, lattice, etc. May be subjected to further transformations for display or printing.
+\item ``Date`` objects (\R{Date}).
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{\Rlogo Commands}
+\Rlogo frequently used commands include:
+\begin{itemize}
+\item \R{getwd()}, \R{setwd()}
+\item \R{str()}, \R{typeof()}, \R{?} and \R{??}
+\item \R{View()} to view a data.frame or matrix, e.g. \R{View(df)}
+\item \R{rm()} to remove an object from the environment, e.g. \R{rm(df)}
+\item \R{install.packages("")} and \R{library()}, e.g. to use package \R{ggplot2}, install it with \R{install.packages("ggplot2")} (with quotes) and load it with \R{library("ggplot2")} (with or without quotes).
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Vectors \& Lists}
+<<'exhibit104', include=TRUE>>=
+  x <- list(1, 2, 3)
+  str(x)
+  x <- c(1, 2, 3)
+  str(x)
+  x <- c(a = 1, b = 2, c = 3)
+  is.vector(x)
+  is.list(x)
+  typeof(x)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Vectors \& Lists}
+\begin{itemize}
+\item A list is a vector of mode ``list.'' The other modes are ``logical'', ``character'', ``numeric'', ``integer.'' 
+\item Lists are of recursive type, whereas atomic vectors are not. This means that they can contain values of different types, even other lists. 
+\item In atomic vectors, all elements are of the same type, so manipulating them can be faster.
+<<'exhibit105', include=TRUE>>=
+  x <- vector("list", 3)
+  is.list(x)
+  is.vector(x)
+  is.recursive(x)
+  is.atomic(x) 
+@
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Subsetting Vectors}
+<<'exhibit111', include=TRUE>>=
+  x <- 1:10
+  x[x > 4]
+  x[x > 9 | x < 2]
+  x[x > 4 & x < 6]  
+  x[x == 5]
+  x[x %in% 3:5]
+  intersect(x, 3:5)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Subsetting Vectors}
+The function \R{intersect} wraps the result with \R{unique}:
+<<'exhibit112', include=TRUE>>=
+  x <- rep("a", 10)
+  x
+  unique(x)
+  x <- c(1:10, 1:10)
+  x[x %in% 3:5]
+  intersect(x, 3:5)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Subsetting Vectors}
+<<'exhibit113', include=TRUE>>=
+  x <- letters[1:3]
+  x
+  x[2]
+  x[-2]
+  x <- x[-2]
+  x
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Subsetting Lists}
+<<'exhibit114', include=TRUE>>=
+  x <- list(ids = letters[1:3], values = sin(1:3), 
+            info = list(x = 1, y = 2, z = 3))
+  x$values
+  x[["ids"]]
+  x$info$y
+  x[[3]] <- NULL
+  x
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Dates}
+<<'exhibit121', include=TRUE>>=
+  as.Date("2017-12-13")
+  as.Date("2017-13-12")  
+  as.Date("2017-13-12", "%Y-%d-%m")
+  start <- as.Date("2000-7-1")
+  end <- as.Date("2003-1-7")
+  seq(start, end, by = "1 year")
+  seq(end, start, by = "-1 year") -> x
+  x[x > start & x < end]
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Sequences}
+<<'exhibit122', include=TRUE>>=
+  0:10
+  10:0
+  rev(0:10)
+  seq(0, 10)
+  seq(0, 10, by = 2)
+  seq(0, 10, length.out = 2)
+  seq(0.1, 0.5, by = 0.05)
+  seq(as.Date("2001-01-01"), as.Date("2003-01-01"), "years")
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Types \& Conversions}
+Convert objects from one type to another:
+<<'exhibit123', include=TRUE>>=
+  x <- c(1L, TRUE, 1.0, "1", 1)
+  typeof(x)
+  as.double(x)
+  as.integer(x)
+  as.numeric(x)
+  as.character(x)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{\Rlogo Math Commands}
+\begin{itemize}
+\item \R{mean()}, \R{median()}, \R{mode()}.
+\item \R{max()}, \R{min()}.
+\item \R{sum()}, \R{colSums()}, \R{rowSums()}, \R{colMeans()}, \R{rowMeans()}, 
+\item \R{unique()}, \R{na.omit()}, \R{is.na()}, 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Math Commands}
+<<'exhibit124', include=TRUE>>=
+  x <- c(NA, 0L, 1L, 2L, 3L, 4L, 4L)
+  mean(x)
+  mean(x, na.rm = TRUE)
+  median(x, na.rm = TRUE)
+  max(x, na.rm = TRUE)
+  min(x, na.rm = TRUE)
+  na.omit(x)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Math Commands}
+<<'exhibit125', include=TRUE>>=
+  x <- c(1L, 2L, 3L, 4L, 4L)
+  quantile(x)
+  summary(x)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Math Commands}
+<<'exhibit126', include=TRUE>>=
+  x <- c(4L, 1L, 2L, 3L, 4L)
+  sort(x)
+  rev(x)
+  sum(x)
+  prod(x)
+  cumsum(x)
+  cumprod(x)
+  length(x)
+  cumprod(x)[length(x)]
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{More On Subsetting}
+<<'exhibit127', include=TRUE>>=
+  x <- c("c","ab","B","bba","c",NA,"@","bla","a","Ba","%")
+  x[x %in% c(letters, LETTERS)]  # select single letters
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Functions}
+\begin{lstlisting}
+  f <- function(x) {
+    y <- x^2
+    return(y)
+  }
+\end{lstlisting}
+<<'exhibit151', include=TRUE>>=
+  f <- function(x) {
+    y <- x^2
+    return(y)
+  }
+  f(2)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Functions}
+<<'exhibit152', include=TRUE>>=
+  "%w/o%" <- function(x, y) x[!x %in% y]  # x without y
+  c(1:5) %w/o% 3
+  setdiff(c(1:5), 3)  # built-in function
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
