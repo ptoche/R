@@ -118,9 +118,10 @@ getwd()
 \frametitle{\Rlogo Commands}
 \Rlogo frequently used commands include:
 \begin{itemize}
-\item \R{getwd()}, \R{setwd()}
-\item \R{str()}, \R{typeof()}, \R{?} and \R{??}
-\item \R{View()} to view a data.frame or matrix, e.g. \R{View(df)}
+\item \R{getwd()}, \R{setwd()}.
+\item \R{str()}, \R{typeof()}, \R{?} and \R{??}.
+\item \R{View()} to view a data.frame or matrix, e.g. \R{View(df)}. \R{head()} and \R{tail()} to quickly view parts of a data structure.
+\item \R{dput()} to convert a data.frame to \Rlogo code.
 \item \R{rm()} to remove an object from the environment, e.g. \R{rm(df)}
 \item \R{install.packages("")} and \R{library()}, e.g. to use package \R{ggplot2}, install it with \R{install.packages("ggplot2")} (with quotes) and load it with \R{library("ggplot2")} (with or without quotes).
 \end{itemize}
@@ -183,10 +184,12 @@ getwd()
 %%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]% frames with code chunks must be marked fragile
 \frametitle{Subsetting Vectors}
-The function \R{intersect} wraps the result with \R{unique}:
-<<'exhibit112', include=TRUE>>=
+<<'exhibit112a', include=TRUE>>=
   x <- rep("a", 10)
   x
+@
+The function \R{intersect} wraps the result with \R{unique}:
+<<'exhibit112b', include=TRUE>>=
   unique(x)
   x <- c(1:10, 1:10)
   x[x %in% 3:5]
@@ -199,6 +202,7 @@ The function \R{intersect} wraps the result with \R{unique}:
 %%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]% frames with code chunks must be marked fragile
 \frametitle{Subsetting Vectors}
+Vectors can be subset by index.
 <<'exhibit113', include=TRUE>>=
   x <- letters[1:3]
   x
@@ -214,6 +218,7 @@ The function \R{intersect} wraps the result with \R{unique}:
 %%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]% frames with code chunks must be marked fragile
 \frametitle{Subsetting Lists}
+Lists can hold lists:
 <<'exhibit114', include=TRUE>>=
   x <- list(ids = letters[1:3], values = sin(1:3), 
             info = list(x = 1, y = 2, z = 3))
@@ -230,6 +235,7 @@ The function \R{intersect} wraps the result with \R{unique}:
 %%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]% frames with code chunks must be marked fragile
 \frametitle{Dates}
+\Rlogo understands dates in the form ``year-month-day`` or ``year/month/day.'' Other formats can be specified explicitly. 
 <<'exhibit121', include=TRUE>>=
   as.Date("2017-12-13")
   as.Date("2017-13-12")  
@@ -282,9 +288,13 @@ Convert objects from one type to another:
 \frametitle{\Rlogo Math Commands}
 \begin{itemize}
 \item \R{mean()}, \R{median()}, \R{mode()}.
-\item \R{max()}, \R{min()}.
+\item \R{max()}, \R{min()}, \R{which.max()}, \R{which.min()}.
 \item \R{sum()}, \R{colSums()}, \R{rowSums()}, \R{colMeans()}, \R{rowMeans()}, 
-\item \R{unique()}, \R{na.omit()}, \R{is.na()}, 
+\item \R{length()}, \R{unique()}, \R{na.omit()}, \R{is.na()}. 
+\item \R{round()}, \R{ceiling()}, \R{floor()}.
+\item \R{var()}, \R{sd()}, \R{mad()}, \R{sample()}
+\item \R{factorial()}, \R{choose(n, k)}, \R{rbinom()}, \R{dnorm()}, \R{pnorm()}, \R{qnorm()}, \R{rnorm()}, \R{dunif()}, \R{punif()}, etc..
+\item \R{table()}, \R{cumsum()}, \R{cumprod()}, \R{cummax()}, \R{cummin()}
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
