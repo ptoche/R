@@ -38,6 +38,10 @@ mean(df$y4)
 ## [1] 7.5
 
 
+## Means: Automate the process
+sapply(1:8, function(x) mean(df[, x]))
+
+
 # Variances of x
 var(df$x1)
 ## [1] 11
@@ -98,6 +102,10 @@ median(df$y4)
 
 
 ## Plots
+## in base R
+plot(df$x1, df$y1)
+
+## with ggplot
 library("ggplot2")
 ggplot(data = df, aes(x = x1, y = y1)) + 
   geom_point(size = 3, pch = 21, fill = "red") + 

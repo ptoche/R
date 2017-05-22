@@ -1,0 +1,112 @@
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[label=TitlePage]
+\maketitle% first slide with title/author information
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Getting Data Into \Rlogo}
+\begin{itemize}
+\item Datasets come in different formats, e.g. \R{.csv}, \R{.xls}, \R{.xlsx}, \R{.dta}, \R{.tsv}. 
+\item Whether you intend to share the dataset or to analyze it with \Rlogo, a good choice of format is ``comma-separated-values (csv)'' because it may easily be read by other software (including spreadsheet software) and because it results in small files. Tab-separated values (tsv) is an alternative that is also easily portable. 
+\item Other formats, such as \R{.xlsx} and \R{.xls} (Excel), \R{.dta} (Stata), \R{.sas7bdat} and \R{.xpt} (SAS), \R{.sav} (SPSS), \R{.mat} (Matlab) or \R{.RData} and \R{.rda} (\Rlogo) may carry more information (such as the type of variable, e.g. \R{int} or \R{char}) or may be compressed or even encrypted.
+\item For most purposes \R{.csv} is a good choice.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Getting Data Into \Rlogo}
+\begin{itemize}
+\item For most purposes \R{.csv} is a good choice. 
+\item \R{.xls} and \R{.xlsx} are also very popular formats. 
+\item In most cases, importing data from these formats is straightforward. 
+\item In some cases, the spreadsheets may contain several sheets of data or non-standard characters, e.g. Chinese characters or invisible characters inadvertently inserted by non-standard inputting methods. In some cases, the datasets may even appear to be corrupted. There are dedicated packages to handle complicated situations. 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Getting Data Into \Rlogo}
+\begin{itemize}
+\item Create a simple spreadsheet with LibreOffice or another software. Save it in the \R{.xls} format. 
+\item In RStudio, under the \R{Environment} tab, you will see a \R{Import Dataset} command. This is equivalent to typing the following commands in your console:
+\begin{lstlisting}
+library(readxl)
+data_1 <- read_excel("path/to/dataset/data-1.xls")
+View(data_1)
+\end{lstlisting}
+\item With simple datasets and for a one-time use, it is often simpler to manually edit the dataset in your spreadsheet software. But with large datasets and/or datasets that will get updated over time, you may want to automate the process of downloading from an online repository, loading the data into \Rlogo, editing. For this purpose, there are more powerful packages than \R{readxl}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Getting Data Into \Rlogo}
+\begin{itemize}
+\item Save the spreadsheet as a \R{.csv}. Make sure to select the appropriate options: The \R{Field Delimiter} should be set to the comma \R{,} and the \R{Text Delimiter} should be set to the double-quote \R{''}. Also select to save the data ``as shown'' rather than saving the formulas. 
+\item Before saving, adjust the display precision to the data precision, otherwise some data will be lost. If your data is precise to the 5th decimal, make sure that all 5 decimals are displayed before saving. 
+\begin{lstlisting}
+library(readr)
+data_1_csv <- read_excel("path/to/dataset/data-1.csv")
+\end{lstlisting}
+\item Notice that I have named the dataset differently to make sure both datasets are loaded. 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Getting Data Into \Rlogo}
+\begin{itemize}
+\item You can compare the datasets with \R{str(data_1)} and \R{str(data_1_csv)} or by viewing the data into the console. This reveals that the variables were imported in different formats:
+\begin{lstlisting}
+typeof(data_1$x)
+## [1] "character"
+typeof(data_1_csv$x)
+## [1] "double"
+\end{lstlisting}
+\item The \R{readxl} package imported our \R{.xls} dataset as characters, while the \R{readr} package imported our \R{.csv} dataset as integers. In this instance, the choice made by the \R{readr} package was a better one. 
+\item We can change the data to the desired type, e.g.
+\begin{lstlisting}
+data_1$x <- as.numeric(data_1$x)
+data_1$y <- as.integer(data_1$y)
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Getting Data Into \Rlogo}
+\begin{itemize}
+\item While it is possible to fix the data type after the data has been loaded into \Rlogo, it is usually convenient to specify the desired data type as we import the data. 
+\begin{lstlisting}
+aaaa
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]% frames with code chunks must be marked fragile
+\frametitle{Import Data:}
+<<'exhibit101', include=TRUE>>=
+  2 + 2
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%% Frame Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

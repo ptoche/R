@@ -1,7 +1,7 @@
 %%% This file to be named beamerThemeRnw.sty and stored on the LaTeX+R path
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Set beamer theme %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%% Set beamer themes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usetheme{default}
 \useoutertheme{default}
 %\usetheme{Madrid}
@@ -142,8 +142,10 @@
 \lstset{language=R}
 \lstset{% options apply to all \begin{lstlisting}
   basicstyle = \small\ttfamily,%fonts for main code
+  backgroundcolor = \color{gray!20}, 
+  texcl = false, % If activated, comment line text is read as LaTeX code
   numbers = none, % position of line-numbers: none, left,etc.
-  numberstyle = \tiny,% fonts for line-numbers: \tiny,\small,etc.
+  numberstyle = \tiny\color{gray},% fonts for line-numbers: \tiny,\small,etc.
   numbersep = 3pt,% space between code and line-numbers
   stepnumber = 1,% step between two line-numbers.
   showspaces = false,% show spaces adding particular underscores
@@ -151,22 +153,35 @@
   frame = none, % adds a frame around the code: single,tb,none
   tabsize = 2, % default tab size
   captionpos = b% caption position: b for bottom, etc.
-  backgroundcolor = \color{gray!20},
   xleftmargin = 0.1\parindent,
   frame = shadowbox, 
   rulesepcolor = \color{RoyalBlue!80!white},
   framexleftmargin = 1pt,
   columns = fullflexible,% 
+  breaklines = true,%
   breakatwhitespace=true,% for use with breaklines option
-  keywords = {R,ggplot2,..}
+  keywordstyle = \bfseries\color{blue},%
+  commentstyle=\color{ForestGreen},
+  stringstyle=\color{Purple}%
 }
+
+\lstset{%
+  morekeywords={ggplot2,xls,xlsx,dta,tsv,xpt,sas7bdat,RData,rda,int}, % morekeywords does not overwrite existing list
+  otherkeywords={!,!=,~,$,\&,\%/\%,\%*\%,\%\%,<-,<<-,->}% manually removing underscore ,_, from otherkeywords list
+}
+\usepackage{realboxes}% \Colorbox allows \lstinline to have background color
+\usepackage{xpatch}% to patch \lstinline command
+\makeatletter
+\xpretocmd\lstinline{\Colorbox{gray!20}\bgroup\appto\lst@DeInit{\egroup}}{}{}
+\makeatother
+\def\R{\lstinline[language=R]}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%  Define shortcut commands for Names %%%%%%%%%%%%%%%%%
 \usepackage{xspace}% \xspace command to close macros
 \xspaceaddexceptions{]\}}
-\newcommand{\R}[1]{\colorbox{lightgray}{\texttt{#1}}\xspace} % biogoo uses lightgray
+%\newcommand{\R}[1]{\colorbox{lightgray}{\texttt{#1}}\xspace} % replaced with \lstinline
 %% define a \Rcode shortcut
 \DeclareRobustCommand\Rsymbol{\texttt{R}\xspace}%
 \newcommand{\Rlogo}{\mbox{\includegraphics[height=1.8ex,keepaspectratio]{Rlogo.png}~}}

@@ -47,7 +47,7 @@
   \href{mailto:contact@patricktoche.com}{contact@patricktoche.com} \\
   \url{https://github.com/ptoche/}
 }
-\date{April 2017}
+\date{May 2017}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -64,7 +64,20 @@
 @
 
 %%%%%%%%%%% Include slides %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-<<'nested-slides', child='R-Introduction.tex'>>=
+%%% 1. Intro
+%%%\subtitle{Introduction to R}
+%%%<<'nested-slides', child='../01-Intro/Introduction.tex'>>=
+%%%@
+%%% 2. Data
+\subtitle{Getting Data into R}
+<<'nested-slides', child='../02-Data/Data.tex'>>=
 @
+%%% 3. Anscombe Quartet
+%%%<<'nested-slides', child='../03-Plots/Plots.tex'>>=
+%%%@
+%%% 4. Gamblers Fallacy
+%%%<<'nested-slides', child='../04-Gambling/Gambling.tex'>>=
+%%%@
 \end{document}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
